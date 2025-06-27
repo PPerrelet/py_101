@@ -1,15 +1,22 @@
+import json
+
+def prompt(message):
+    print(f"==> {message}")
+
+def invalid_number(number_str):
+    try:
+        int(number_str)
+    except ValueError:
+        return True
+
+    return False
+
+with open('calculator_messages.json', 'r') as file:
+    MESSAGES = json.load(file)
+
 while True:
-    def prompt(message):
-        print(f"==> {message}")
 
-    def invalid_number(number_str):
-        try:
-            int(number_str)
-        except ValueError:
-            return True
-
-        return False
-    prompt('Welcome to Calculator!')
+    prompt(MESSAGES['welcome'])
     prompt("What's the first number?")
     number1 = input()
 
