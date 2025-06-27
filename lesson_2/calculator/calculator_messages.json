@@ -1,4 +1,35 @@
 {
-  "welcome": "Welcome to Calculator!",
-  "invalid_number": "Hmm... that doesn't look like a valid number."
+  "language_error": "Invalid language code. Try again.",
+  "select_code": "Choose one of the following language codes.",
+  "language_codes": "en, tl, fr",
+  "en": {
+    "welcome": "Welcome to Calculator!",
+    "invalid_number": "Hmm... that doesn't look like a valid number.",
+    "first_number": "What's the first number?",
+    "second_number": "What's the second number?",
+    "operator_prompt": "What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide",
+    "result": "The result is",
+    "repeat_operation": "Would you like to perform another operation? (y/n)",
+    "operator_error": "You must choose 1, 2, 3, or 4"
+  },
+  "tl": {
+    "welcome": "Maligayang pagdating sa Calculator!",
+    "invalid_number": "Hmm... mukhang hindi valid number yan.",
+    "first_number": "Ano ang unang numero?",
+    "second_number": "Ano ang pangalawang numero?",
+    "operator_prompt": "Anong operasyon ang gusto mong gawin?\n1) Idagdag 2) Mibawas 3) Magparami 4) Hatiin",
+    "result": "Ang resulta ay",
+    "repeat_operation": "Gusto mo bang magsagawa ng isa pang operasyon? (y/n)",
+    "operator_error": "Dapat kang pumili 1, 2, 3, or 4"
+  },
+  "fr": {
+    "welcome": "Bienvenue sur Calculatrice!",
+    "invalid_number": "Hmm... cela ne ressemble pas à un numéro valide.",
+    "first_number": "Quel est le premier numéro ?",
+    "second_number":  "Quel est le deuxième numéro ?",
+    "operator_prompt": "Quelle opération souhaitez-vous réaliser?\n1) Ajouter 2) Soustraire 3) Multiplier 4) Diviser",
+    "result": "Le résultat est",
+    "repeat_operation": "Souhaitez-vous effectuer une autre opération? (y/n)",
+    "operator_error": "Vous devez choisir 1, 2, 3, or 4"
+  }
 }

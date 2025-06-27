@@ -14,29 +14,34 @@ def invalid_number(number_str):
 with open('calculator_messages.json', 'r') as file:
     MESSAGES = json.load(file)
 
-while True:
+prompt(MESSAGES['select_code'])
+prompt(MESSAGES['language_codes'])
+language = input()
+while language not in ["en", "tl", "fr"]:
+    prompt(MESSAGES['language_error'])
+    language = input()
 
-    prompt(MESSAGES['welcome'])
-    prompt("What's the first number?")
+while True:
+    prompt(MESSAGES[language]['welcome'])
+    prompt(MESSAGES[language]['first_number'])
     number1 = input()
 
     while invalid_number(number1):
-        prompt("Hmm... that doesn't look like a valid number.")
+        prompt(MESSAGES[language]['invalid_number'])
         number1 = input()
 
-    prompt("What's the second number?")
+    prompt(MESSAGES[language]['second_number'])
     number2 = input()
 
     while invalid_number(number2):
-        prompt("Hmm... that doesn't look like a valid number.")
+        prompt(MESSAGES[language]['invalid_number'])
         number2 = input()
 
-    prompt("What operation would you like to perform?" +
-        "\n1) Add 2) Subtract 3) Multiply 4) Divide")
+    prompt(MESSAGES[language]['operator_prompt'])
     operation = input()
 
     while operation not in ["1", "2", "3", "4"]:
-        prompt("You must choose 1, 2, 3, or 4")
+        prompt(MESSAGES[language]['operator_error'])
         operation = input()
 
     match operation:
@@ -49,8 +54,8 @@ while True:
         case "4":
             output = int(number1) / int(number2)
 
-    prompt(f"The result is {output}")
-    prompt('Would you like to perform another operation? (y/n) ')
+    prompt(f"{MESSAGES[language]['result']} {output}")
+    prompt(MESSAGES[language]['repeat_operation'])
     answer = input()
     if answer and answer[0].lower() != 'y':
         break
