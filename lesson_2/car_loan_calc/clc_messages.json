@@ -1,0 +1,38 @@
+{
+  "language_error": "Invalid language code. Try again.",
+  "select_code": "Choose one of the following language codes.",
+  "language_codes": "en, tl, fr",
+  "en": {
+    "welcome": "Welcome to Car Loan Calculator!",
+    "invalid_number": "Must enter a positive number",
+    "loan_amount": "What's the loan amount for this vehicle?",
+    "interest_rate": "What is the interest rate?",
+    "loan_duration": "What is the loan duration (in months)?",
+    "monthly_payment_msg": "Your monthly payment is ${monthly_payment_msg:.2f}",
+    "repeat_calculation": "Would you like to calculate another loan payment ?",
+    "repeat_answer":"Please enter 'y' or 'n'.",
+    "farewell":"Goodbye! May your loops terminate and your bugs be ever `None`."
+  },
+   "tl": {
+      "welcome": "Maligayang pagdating sa Calculator ng Auto Loan!",
+      "invalid_number": "Kailangan mong maglagay ng positibong numero",
+      "loan_amount": "Magkano ang halaga ng utang para sa sasakyang ito?",
+      "interest_rate": "Ano ang interest rate?",
+      "loan_duration": "Gaano katagal ang utang (sa mga buwan)?",
+      "monthly_payment_msg": "Ang buwanang bayad mo ay ₱{monthly_payment_msg:.2f}",
+      "repeat_calculation": "Gusto mo bang kalkulahin muli ang isa pang bayad sa utang?",
+      "repeat_answer": "Pakilagay ang 'y' o 'n'.",
+      "farewell": "Paalam! Nawa'y matapos ang iyong mga loop at laging `None` ang bugs mo."
+    },
+  "fr": {
+      "welcome": "Bienvenue dans le Calculateur de Prêt Automobile !",
+      "invalid_number": "Vous devez entrer un nombre positif",
+      "loan_amount": "Quel est le montant du prêt pour ce véhicule ?",
+      "interest_rate": "Quel est le taux d'intérêt ?",
+      "loan_duration": "Quelle est la durée du prêt (en mois) ?",
+      "monthly_payment_msg": "Votre paiement mensuel est de ${monthly_payment_msg:.2f}",
+      "repeat_calculation": "Souhaitez-vous calculer un autre paiement de prêt ?",
+      "repeat_answer": "Veuillez entrer 'y' ou 'n'.",
+      "farewell": "Au revoir ! Que vos boucles se terminent et que vos bugs soient toujours `None`."
+  }
+}
