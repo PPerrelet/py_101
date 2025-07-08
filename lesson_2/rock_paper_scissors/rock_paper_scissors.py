@@ -1,7 +1,7 @@
 import random  # Import the random module to allow random selection
 
 # List of valid choices for the game
-VALID_CHOICES = ['rock', 'paper', 'scissors']
+VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
 
 # Define a helper function to display messages with a consistent format
 def prompt(message):
@@ -45,13 +45,30 @@ while True:
 
     # Determine winner:
     # Rock beats Scissors, Scissors beats Paper, Paper beats Rock
+    # Rock beats Lizard, Lizard beats Spock, Spock beats Scissors
+    # Scissors beats Lizard, Lizard beats Paper, Paper beats Spock,
+    # Spock beats rock
     if ((human_choice == 'rock' and computer_choice == 'scissors') or
         (human_choice == 'paper' and computer_choice == 'rock') or
-        (human_choice == 'scissors' and computer_choice == 'paper')):
+        (human_choice == 'scissors' and computer_choice == 'paper') or 
+        (human_choice == 'rock' and computer_choice == 'lizard') or 
+        (human_choice == 'lizard' and computer_choice == 'spock') or 
+        (human_choice == 'spock' and computer_choice == 'scissors') or
+        (human_choice == 'scissors' and computer_choice == 'lizard') or
+        (human_choice == 'lizard' and computer_choice == 'paper') or 
+        (human_choice == 'paper' and computer_choice == 'spock') or 
+        (human_choice == 'spock' and computer_choice == 'rock')):
         winner()  # Human wins
-    elif ((human_choice == "rock" and computer_choice == "paper") or
-          (human_choice == "paper" and computer_choice == "scissors") or
-          (human_choice == "scissors" and computer_choice == "rock")):
+    elif ((computer_choice == 'rock' and human_choice == 'scissors') or
+          (computer_choice == 'paper' and human_choice == 'rock') or
+          (computer_choice == 'scissors' and human_choice == 'paper') or
+          (computer_choice == 'rock' and human_choice == 'lizard') or 
+          (computer_choice == 'lizard' and human_choice == 'spock') or 
+          (computer_choice == 'spock' and human_choice == 'scissors') or
+          (computer_choice == 'scissors' and human_choice == 'lizard') or
+          (computer_choice == 'lizard' and human_choice == 'paper') or 
+          (computer_choice == 'paper' and human_choice == 'spock') or 
+          (computer_choice == 'spock' and human_choice == 'rock')):
         loser()  # Computer wins
     else:
         tie()  # If none of the above, it's a tie
