@@ -33,7 +33,7 @@ while True:
 
     # Validate user input; repeat until a valid choice is made
     while human_choice not in VALID_CHOICES:
-        prompt("That's not a valid choice")  # Notify of invalid input
+        prompt("That's not a valid choice. Try again.")  # Notify of invalid input
         human_choice = input().lower()  # Retry input
 
     # Randomly choose for the computer
