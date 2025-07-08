@@ -50,24 +50,24 @@ while True:
     # Spock beats rock
     if ((human_choice == 'rock' and computer_choice == 'scissors') or
         (human_choice == 'paper' and computer_choice == 'rock') or
-        (human_choice == 'scissors' and computer_choice == 'paper') or 
-        (human_choice == 'rock' and computer_choice == 'lizard') or 
-        (human_choice == 'lizard' and computer_choice == 'spock') or 
+        (human_choice == 'scissors' and computer_choice == 'paper') or
+        (human_choice == 'rock' and computer_choice == 'lizard') or
+        (human_choice == 'lizard' and computer_choice == 'spock') or
         (human_choice == 'spock' and computer_choice == 'scissors') or
         (human_choice == 'scissors' and computer_choice == 'lizard') or
-        (human_choice == 'lizard' and computer_choice == 'paper') or 
-        (human_choice == 'paper' and computer_choice == 'spock') or 
+        (human_choice == 'lizard' and computer_choice == 'paper') or
+        (human_choice == 'paper' and computer_choice == 'spock') or
         (human_choice == 'spock' and computer_choice == 'rock')):
         winner()  # Human wins
     elif ((computer_choice == 'rock' and human_choice == 'scissors') or
           (computer_choice == 'paper' and human_choice == 'rock') or
           (computer_choice == 'scissors' and human_choice == 'paper') or
-          (computer_choice == 'rock' and human_choice == 'lizard') or 
-          (computer_choice == 'lizard' and human_choice == 'spock') or 
+          (computer_choice == 'rock' and human_choice == 'lizard') or
+          (computer_choice == 'lizard' and human_choice == 'spock') or
           (computer_choice == 'spock' and human_choice == 'scissors') or
           (computer_choice == 'scissors' and human_choice == 'lizard') or
-          (computer_choice == 'lizard' and human_choice == 'paper') or 
-          (computer_choice == 'paper' and human_choice == 'spock') or 
+          (computer_choice == 'lizard' and human_choice == 'paper') or
+          (computer_choice == 'paper' and human_choice == 'spock') or
           (computer_choice == 'spock' and human_choice == 'rock')):
         loser()  # Computer wins
     else:
