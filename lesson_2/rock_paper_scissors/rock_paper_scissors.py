@@ -1,90 +1,99 @@
-import random  # Import the random module to allow random selection
+import random
 
-# List of valid choices for the game
 VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
 
-# Define a helper function to display messages with a consistent format
+WINNING_COMBOS = {
+    'rock':     ['scissors', 'lizard'],
+    'paper':    ['rock',     'spock'],
+    'scissors': ['paper',    'lizard'],
+    'lizard':   ['paper',    'spock'],
+    'spock':    ['rock',     'scissors'],
+}
+
+ACTIONS = {
+    ('rock', 'scissors'):     'Rock crushes Scissors',
+    ('rock', 'lizard'):       'Rock crushes Lizard',
+    ('paper', 'rock'):        'Paper covers Rock',
+    ('paper', 'spock'):       'Paper disproves Spock',
+    ('scissors', 'paper'):    'Scissors cuts Paper',
+    ('scissors', 'lizard'):   'Scissors decapitates Lizard',
+    ('lizard', 'paper'):      'Lizard eats Paper',
+    ('lizard', 'spock'):      'Lizard poisons Spock',
+    ('spock', 'scissors'):    'Spock smashes Scissors',
+    ('spock', 'rock'):        'Spock vaporizes Rock',
+}
+
+def player_wins(player_choice, computer_choice):
+    return computer_choice in WINNING_COMBOS[player_choice]
+
+def comp_wins(computer_choice, player_choice):
+    return player_choice in WINNING_COMBOS[computer_choice]
+
 def prompt(message):
-    print(f'==> {message}')  # Prefix all prompts with '==>'
+    print(f'==> {message}')
 
-# Function to display a winning message for the human
-def winner():
-    print('--------------------------------------------------')
-    print("                The Human WINS                    ")  # human wins
-    print('--------------------------------------------------')
-
-# Function to display a winning message for the computer
-def loser():
-    print('--------------------------------------------------')
-    print("              The Computer WINS                   ")  # comp wins
-    print('--------------------------------------------------')
-
-# Function to display a tie message
-def tie():
-    print('--------------------------------------------------')
-    print("                   It's a Tie                     ")  # Tie
-    print('--------------------------------------------------')
-
-# Main game loop: runs indefinitely until user decides to stop
 while True:
-    # Ask the user for their choice
-    prompt(f"Choose one: {', '.join(VALID_CHOICES)}")  # Display valid choices
-    human_choice = input().lower()  # Make user input lowercase
+    HUMAN_WINS = 0
+    COMPUTER_WINS = 0
 
-    # Validate user input; repeat until a valid choice is made
-    while human_choice not in VALID_CHOICES:
-        prompt("That's not a valid choice. Try again.")  # Notify of invalid input
-        human_choice = input().lower()  # Retry input
+    while HUMAN_WINS < 3 and COMPUTER_WINS < 3:
+        candidates = VALID_CHOICES[:]
+        NEXT_LETTERS = ""
 
-    # Randomly choose for the computer
-    computer_choice = random.choice(VALID_CHOICES)
+        while True:
+            prompt(f"Choose one: {', '.join(candidates)}")
 
-    # Show what both players chose
-    prompt(f'Human chose {human_choice}')
-    prompt(f'Computer chose {computer_choice}')
+            if NEXT_LETTERS and len(candidates) > 1:
+                prompt("Multiple matches found. Please enter the next letter.")
 
-    # Determine winner:
-    # Rock beats Scissors, Scissors beats Paper, Paper beats Rock
-    # Rock beats Lizard, Lizard beats Spock, Spock beats Scissors
-    # Scissors beats Lizard, Lizard beats Paper, Paper beats Spock,
-    # Spock beats rock
-    if ((human_choice == 'rock' and computer_choice == 'scissors') or
-        (human_choice == 'paper' and computer_choice == 'rock') or
-        (human_choice == 'scissors' and computer_choice == 'paper') or
-        (human_choice == 'rock' and computer_choice == 'lizard') or
-        (human_choice == 'lizard' and computer_choice == 'spock') or
-        (human_choice == 'spock' and computer_choice == 'scissors') or
-        (human_choice == 'scissors' and computer_choice == 'lizard') or
-        (human_choice == 'lizard' and computer_choice == 'paper') or
-        (human_choice == 'paper' and computer_choice == 'spock') or
-        (human_choice == 'spock' and computer_choice == 'rock')):
-        winner()  # Human wins
-    elif ((computer_choice == 'rock' and human_choice == 'scissors') or
-          (computer_choice == 'paper' and human_choice == 'rock') or
-          (computer_choice == 'scissors' and human_choice == 'paper') or
-          (computer_choice == 'rock' and human_choice == 'lizard') or
-          (computer_choice == 'lizard' and human_choice == 'spock') or
-          (computer_choice == 'spock' and human_choice == 'scissors') or
-          (computer_choice == 'scissors' and human_choice == 'lizard') or
-          (computer_choice == 'lizard' and human_choice == 'paper') or
-          (computer_choice == 'paper' and human_choice == 'spock') or
-          (computer_choice == 'spock' and human_choice == 'rock')):
-        loser()  # Computer wins
+            letter = input().lower()
+            NEXT_LETTERS += letter
+
+            candidates = [
+                word for word in candidates if word.startswith(NEXT_LETTERS)
+            ]
+
+            if not candidates:
+                prompt("No matches found. Starting over.")
+                candidates = VALID_CHOICES[:]
+                NEXT_LETTERS = ""
+            elif len(candidates) == 1:
+                human_choice = candidates[0]
+                break
+
+        comp_choice = random.choice(VALID_CHOICES)
+
+        prompt(f'Human chose {human_choice} and Computer chose {comp_choice}')
+
+        if player_wins(human_choice, comp_choice):
+            action = ACTIONS[(human_choice, comp_choice)]
+            prompt(f'{action}! You win this round.')
+            HUMAN_WINS += 1
+        elif comp_wins(comp_choice, human_choice):
+            action = ACTIONS[(comp_choice, human_choice)]
+            prompt(f'{action}! Computer wins this round.')
+            COMPUTER_WINS += 1
+        else:
+            prompt("Both chose the same. It's a tie!")
+
+        print(
+         '--------------------------------------------------\n'
+          f'            Human: {HUMAN_WINS} | Computer: {COMPUTER_WINS}\n'
+         '--------------------------------------------------'
+    )
+
+    if HUMAN_WINS == 3:
+        prompt("The Human conquers with 3 wins!")
     else:
-        tie()  # If none of the above, it's a tie
+        prompt("The Computer triumphs with 3 wins!")
 
-    # Ask the user if they want to play again
     prompt('Do you wish to play again, mortal? (y/n)')
-    answer = input().lower()  # Normalize response
+    answer = input().lower()
 
-    # Validate yes/no answer
-    while True:
-        if answer.startswith('n') or answer.startswith('y'):
-            break  # Valid input; exit loop
-        prompt("Please enter 'y' or 'n'.")  # Ask again if invalid
+    while not answer.startswith('y') and not answer.startswith('n'):
+        prompt("Please enter 'y' or 'n'.")
         answer = input().lower()
 
-    # Exit game if user said no
-    if answer[0] == 'n':
-        prompt("Farewell, brave mortal!")  # goodbye message
-        break  # Exit main game loop
+    if answer.startswith('n'):
+        prompt("Farewell, brave mortal!")
+        break
